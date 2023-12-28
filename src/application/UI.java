@@ -1,5 +1,6 @@
 package application;
 
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
@@ -48,6 +49,16 @@ public class UI {
         }
         catch (RuntimeException e){
             throw new InputMismatchException("Erros reading ChessPosition. Valid values are from -a1- to -h8-");
+        }
+    }
+    public static void printMatch(ChessMatch chessMatch){
+        printBoard(chessMatch.getPieces());
+        System.out.println();
+        System.out.println("Turn: " + ANSI_GREEN + chessMatch.getTurn() + ANSI_RESET);
+        if(chessMatch.getCurrentPlayer() == Color.WHITE){
+            System.out.println("Waiting player: " + ANSI_WHITE + chessMatch.getCurrentPlayer() + ANSI_RESET);
+        }else{
+            System.out.println("Waiting player: " + ANSI_YELLOW + chessMatch.getCurrentPlayer() + ANSI_RESET);
         }
     }
     public static void printBoard(ChessPiece[][] pieces){
